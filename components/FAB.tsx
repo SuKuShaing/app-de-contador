@@ -1,6 +1,6 @@
 // FAB: Floating Action Button
 
-import { Text, Pressable, StyleSheet } from "react-native";
+import { Text, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 
 interface Props {
 	label: string;
@@ -20,7 +20,13 @@ export default function FAB({
 	return (
 		<>
 			<Pressable
-				style={[styles.floatingButton, position === "right" ? styles.floatingButtonRight : styles.floatingButtonLeft]}
+				style={({pressed}) => [
+					styles.floatingButton,
+					position === "right"
+						? styles.floatingButtonRight
+						: styles.floatingButtonLeft,
+					pressed ? { opacity: 0.7 } : { opacity: 1 },
+				]}
 				onPress={onPress}
 				onLongPress={onLongPress}
 			>
